@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="row">
+		<nav class="navbar navbar-default">
+			<ul class="nav navbar-nav nav-pills">
+				<li routerLink="/" routerLinkActive="active"><a href="#" >Zamówienia</a></li>
+				<li routerLink="/moje-konto" routerLinkActive="active"><a href="#">Moje konto</a></li>
+			</ul>
+			<ul class="nav navbar-nav nav-pills navbar-right">
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nowe zamówienie idywidualne <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li routerLink="/user/nowe-zamowienie/garnitur" routerLinkActive="active"><a href="#">Garnitur</a></li>
+						<li routerLink="/user/nowe-zamowienie/marynarka" routerLinkActive="active"><a href="#">Marynarka</a></li>
+						<li routerLink="/user/nowe-zamowienie/spodnie" routerLinkActive="active"><a href="#">Spodnie</a></li>
+						<li routerLink="/user/nowe-zamowienie/kamizelka" routerLinkActive="active"><a href="#">Kamizelka</a></li>
+						<li><a href="#">Kurtka</a></li>
+					</ul>
+				</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nowe zamówienie hurtowe <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Garnitur</a></li>
+						<li><a href="#">Marynarka</a></li>
+						<li><a href="#">Spodnie</a></li>
+						<li><a href="#">Kurtka</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</div>
+<hr>
+<router-outlet></router-outlet>

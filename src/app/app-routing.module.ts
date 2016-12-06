@@ -2,26 +2,26 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { IndywidualneComponent } from './indywidualne/indywidualne.component';
-import { ZamowieniaComponent } from './zamowienia/zamowienia.component';
-import { NoweZamowienieComponent } from './nowe-zamowienie/nowe-zamowienie.component';
+import { LoginComponent } from './login/login.component';
+import { ClientComponent } from './client/client.component';
+
 
 @NgModule({
   imports: [
     RouterModule.forRoot([
 	    {
 	    	path: '',
-	    	// redirectTo: '/indywidualne',
-	    	component: ZamowieniaComponent,
+	    	redirectTo: '/user',
+	    	// component: LoginComponent,
 	    	pathMatch: 'full'
 	    },
 	    {
-	    	path: 'indywidualne',
-	    	component: IndywidualneComponent
+	    	path: 'login',
+	    	component: LoginComponent
 	    },
 	    {
-	    	path: 'nowe-zamowienie/:type',
-	    	component: NoweZamowienieComponent
+	    	path: 'user',
+	    	component: ClientComponent
 	    }
 	])
   ],

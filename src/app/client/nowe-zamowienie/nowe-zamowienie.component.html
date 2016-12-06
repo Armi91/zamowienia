@@ -2,10 +2,11 @@
 	<div class="row">
 		<h1>Zamówienie indywidualne {{type}}</h1>
 		<form (ngSubmit)="onSubmitForm($event)" #myForm="ngForm">
+		{{myForm.value | json}}
 			<div class="general row">
 				<div class="form-group col-xs-12 col-sm-6">
 					<label for="data_zamowienia">Data zamówienia</label>
-					<input class="form-control" type="text" name="data_zamowienia" (input)="general.data_zamowienia = $event.target.value">
+					<input class="form-control" type="text" ngModel name="data_zamowienia" (input)="general.data_zamowienia = $event.target.value">
 				</div>
 				<div class="form-group col-xs-12 col-sm-6">
 					<label for="nazwisko_klienta">Imię i nazwisko</label>
