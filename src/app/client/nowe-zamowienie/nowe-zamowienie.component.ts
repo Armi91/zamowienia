@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
+// import { NgForm } from '@angular/forms';
 
 import { NoweZamowienieModule } from './nowe-zamowienie.module';
 
@@ -19,44 +20,25 @@ export class NoweZamowienieComponent implements OnInit {
 
 	type: string;
 	private sub: any;
-	order: any;
-	general: any;
-	asortyment: any;
-	marynarka: any;
-	spodnie: any;
-	kamizelka: any;
+	dateValue: any;
 
-	// noweZamowienie: NoweZamowienie;
-
-	constructor(private route: ActivatedRoute, private noweZamowienieService: NoweZamowienieService) { }
+	constructor(private route: ActivatedRoute, private noweZamowienieService: NoweZamowienieService) {
+		this.dateValue = new Date();
+	 }
 
 	ngOnInit() {
 		this.sub = this.route.params.subscribe(params => {
 			this.type = params['type'];
 		})
 
-		this.general = {};
-		this.asortyment = {};
-		this.marynarka = {};
-		this.spodnie = {};
-		this.kamizelka = {};
-
-
-
-		this.order = {};
 	}
 
-	onSubmitForm(event){
-		this.order = Object.assign({}, this.general, this.asortyment, this.marynarka, this.spodnie, this.kamizelka)
-
-		this.noweZamowienieService.saveOrder(this.order)
+	onSubmitForm(order){
+		console.log(order);
+		order.typ_zamowienia = this.type.toUpperCase();
+		this.noweZamowienieService.saveOrder(order)
 			.subscribe(() => console.log('Success! --------'), error => console.error(error))
 
-		// console.log(this.order)
-
-
 	}
-
-
 
 }

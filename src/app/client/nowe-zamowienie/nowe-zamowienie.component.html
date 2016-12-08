@@ -1,22 +1,26 @@
 <div class="container">
 	<div class="row">
 		<h1>Zamówienie indywidualne {{type}}</h1>
-		<form (ngSubmit)="onSubmitForm($event)" #myForm="ngForm">
-		{{myForm.value | json}}
+		<form (submit)="onSubmitForm(order.value)" #order="ngForm">
+		{{order.value | json}}
 			<div class="general row">
 				<div class="form-group col-xs-12 col-sm-6">
+					<label for="nazwisko_klienta">Zleceniodawca</label>
+					<input class="form-control" type="text" ngModel name="zleceniodawca"> <!-- TODO: pobrac numer zleceniodawcy z serwera -->
+				</div>
+				<div class="form-group col-xs-12 col-sm-6">
 					<label for="data_zamowienia">Data zamówienia</label>
-					<input class="form-control" type="text" ngModel name="data_zamowienia" (input)="general.data_zamowienia = $event.target.value">
+					<input class="form-control" type="text" [ngModel]="dateValue | date: 'dd.MM.yyyy'" name="data_zamowienia">
 				</div>
 				<div class="form-group col-xs-12 col-sm-6">
 					<label for="nazwisko_klienta">Imię i nazwisko</label>
-					<input class="form-control" type="text" name="nazwisko_klienta" (input)="general.nazwisko_klienta = $event.target.value">
+					<input class="form-control" type="text" ngModel name="nazwisko_klienta">
 				</div>
 			</div>
 			<div class="assortment row" *ngIf="type == 'garnitur'">
 				<div class="form-group col-xs-12 col-sm-6">
 					<label for="asortyment">Asortyment</label>
-					<select name="asortyment" class="form-control" required (input)="asortyment.typ = $event.target.value">
+					<select ngModel name="asortyment" class="form-control" required>
 						<option disabled>Wybierz...</option>
 						<option value="dwuczesciowy" selected>Garnitur 2 - częściowy</option>
 						<option value="trzyczesciowy">Garnitur 3 - częściowy</option>
@@ -34,24 +38,24 @@
 				<br><h2>Marynarka</h2>
 				<div class="form-group col-xs-12 col-sm-6">
 					<label for="tkanina_marynarka">Tkanina</label>
-					<input class="form-control" type="text" name="tkanina_marynarka" (input)="marynarka.tkanina_marynarka = $event.target.value">
+					<input class="form-control" type="text" ngModel name="tkanina_marynarka">
 				</div>
 				<div class="form-group col-xs-12 col-sm-6">
 					<label for="rozmiar_mierzony_marynarka">Rozmiar mierzony</label>
-					<input class="form-control" type="text" name="rozmiar_mierzony_marynarka" (input)="marynarka.rozmiar_mierzony_marynarka = $event.target.value">
+					<input class="form-control" type="text" ngModel name="rozmiar_mierzony_marynarka">
 				</div>
 				<div class="form-group col-xs-12 col-sm-6">
 					<label for="model_marynarka">Model</label>
-					<input class="form-control" type="text" name="model_marynarka" (input)="marynarka.model_marynarka = $event.target.value">
+					<input class="form-control" type="text" ngModel name="model_marynarka">
 				</div>
 				<div class="form-group col-xs-12 col-sm-6">
 					<label>Podszewka</label>
 					<div class="radio">
 						<label>
-							<input type="radio" name="podszewka_marynarka" value="podszewka_marynarka_wiskoza" (click)="marynarka.podszewka_marynarka = $event.target.value">Wiskoza
+							<input type="radio" ngModel name="podszewka_marynarka" value="podszewka_marynarka_wiskoza">Wiskoza
 						</label>
 						<label>
-							<input type="radio" name="podszewka_marynarka" value="podszewka_marynarka_poliester" (click)="marynarka.podszewka_marynarka = $event.target.value">Poliester
+							<input type="radio" ngModel name="podszewka_marynarka" value="podszewka_marynarka_poliester">Poliester
 						</label>
 					</div>
 				</div>
@@ -59,13 +63,13 @@
 					<label>Rozcięcia</label>
 					<div class="radio">
 						<label>
-							<input type="radio" name="rozciecia_marynarka" value="brak" (click)="marynarka.rozciecia_marynarka = $event.target.value">Brak
+							<input type="radio" ngModel name="rozciecia_marynarka" value="brak">Brak
 						</label>
 						<label>
-							<input type="radio" name="rozciecia_marynarka" value="1" (click)="marynarka.rozciecia_marynarka = $event.target.value">1
+							<input type="radio" ngModel name="rozciecia_marynarka" value="1">1
 						</label>
 						<label>
-							<input type="radio" name="rozciecia_marynarka" value="2" (click)="marynarka.rozciecia_marynarka = $event.target.value">2
+							<input type="radio" ngModel name="rozciecia_marynarka" value="2">2
 						</label>
 					</div>
 				</div>
@@ -73,51 +77,51 @@
 					<label>Stębnowanie - AMF</label>
 					<div class="radio">
 						<label>
-							<input type="radio" name="stebnowanie_marynarka" value="tak" (click)="marynarka.stebnowanie_marynarka = $event.target.value">Tak
+							<input type="radio" ngModel name="stebnowanie_marynarka" value="tak">Tak
 						</label>
 						<label>
-							<input type="radio" name="stebnowanie_marynarka" value="nie" (click)="marynarka.stebnowanie_marynarka = $event.target.value">Nie
+							<input type="radio" ngModel name="stebnowanie_marynarka" value="nie">Nie
 						</label>
 					</div>
-
 
 				</div>
 				<div class="form-group col-xs-6 col-sm-3">
 					<label for="dlugosc_tylu_marynarka">Długośc tyłu</label>
-					<input class="form-control" type="text" name="dlugosc_tylu_marynarka" (input)="marynarka.dlugosc_tylu_marynarka = $event.target.value">
+					<input class="form-control" type="text" ngModel name="dlugosc_tylu_marynarka">
 				</div><div class="form-group col-xs-6 col-sm-3">
 					<label for="szerokosc_tylu_marynarka">Szerokośc tyłu</label>
-					<input class="form-control" type="text" name="szerokosc_tylu_marynarka" (input)="marynarka.szerokosc_tylu_marynarka = $event.target.value">
+					<input class="form-control" type="text" ngModel name="szerokosc_tylu_marynarka">
 				</div>
 				<div class="form-group col-xs-6 col-sm-3">
 					<label for="dlugosc_ramienia_marynarka">Długośc ramienia</label>
-					<input class="form-control" type="text" name="dlugosc_ramienia_marynarka" (input)="marynarka.dlugosc_ramienia_marynarka = $event.target.value">
+					<input class="form-control" type="text" ngModel name="dlugosc_ramienia_marynarka">
 				</div>
 				<div class="form-group col-xs-6 col-sm-3">
 					<label for="dlugosc_rekawa_marynarka">Długośc rękawa</label>
-					<input class="form-control" type="text" name="dlugosc_rekawa_marynarka" (input)="marynarka.dlugosc_rekawa_marynarka = $event.target.value">
+					<input class="form-control" type="text" ngModel name="dlugosc_rekawa_marynarka">
 				</div>
 				<div class="form-group col-xs-12">
 					<label for="opis_marynarka">Dodatkowe informacje</label>
-					<textarea class="form-control" name="opis_marynarka" (input)="marynarka.opis_marynarka = $event.target.value"></textarea>
+					<textarea class="form-control" ngModel name="opis_marynarka"></textarea>
 				</div>
 			</div>
 
 			<!-- Kamizelka -->
 
-			<div class="kamizelka row" *ngIf="(type == 'garnitur' && asortyment.asortyment != 'dwuczesciowy') || type =='kamizelka'">
+<!-- TODO asortyment -->
+			<div class="kamizelka row" *ngIf="(type == 'garnitur' && order.value.asortyment != 'dwuczesciowy') || type =='kamizelka'">
 				<br><h2>Kamizelka</h2>
 				<div class="form-group col-xs-12 col-sm-6">
 					<label for="tkanina_kamizelka">Tkanina</label>
-					<input class="form-control" type="text" name="tkanina_kamizelka" (input)="kamizelka.tkanina_kamizelka = $event.target.value">
+					<input class="form-control" type="text" ngModel name="tkanina_kamizelka">
 				</div>
 				<div class="form-group col-xs-12 col-sm-6">
 					<label for="rozmiar_mierzony_kamizelka">Rozmiar mierzony</label>
-					<input class="form-control" type="text" name="rozmiar_mierzony_kamizelka" (input)="kamizelka.rozmiar_mierzony_kamizelka = $event.target.value">
+					<input class="form-control" type="text" ngModel name="rozmiar_mierzony_kamizelka">
 				</div>
 				<div class="form-group col-xs-12 col-sm-6">
 					<label for="model_kamizelka">Model</label>
-					<input class="form-control" type="text" name="model_kamizelka" (input)="kamizelka.model_kamizelka = $event.target.value">
+					<input class="form-control" type="text" ngModel name="model_kamizelka">
 				</div>
 
 
@@ -126,10 +130,10 @@
 					<label>Stębnowanie - AMF</label>
 						<div class="radio">
 							<label>
-								<input type="radio" name="stebnowanie_kamizelka" value="tak" (click)="kamizelka.stebnowanie_kamizelka = $event.target.value">Tak
+								<input type="radio" ngModel name="stebnowanie_kamizelka" value="tak">Tak
 							</label>
 							<label>
-								<input type="radio" name="stebnowanie_kamizelka" value="nie" (click)="kamizelka.stebnowanie_kamizelka = $event.target.value">Nie
+								<input type="radio" ngModel name="stebnowanie_kamizelka" value="nie">Nie
 							</label>
 						</div>
 				</div>
@@ -138,15 +142,15 @@
 
 				<div class="form-group col-xs-6 col-sm-3">
 					<label for="dlugosc_przodu_kamizelka">Długośc przodu</label>
-					<input class="form-control" type="text" name="dlugosc_przodu_kamizelka" (input)="kamizelka.dlugosc_przodu_kamizelka = $event.target.value">
+					<input class="form-control" type="text" ngModel name="dlugosc_przodu_kamizelka">
 				</div>
 				<div class="form-group col-xs-6 col-sm-3">
 					<label for="dlugosc_tylu_kamizelka">Długośc tyłu</label>
-					<input class="form-control" type="text" name="dlugosc_tylu_kamizelka" (input)="kamizelka.dlugosc_tylu_kamizelka = $event.target.value">
+					<input class="form-control" type="text" ngModel name="dlugosc_tylu_kamizelka">
 				</div>
 				<div class="form-group col-xs-12">
 					<label for="opis_kamizelka">Dodatkowe informacje</label>
-					<textarea class="form-control" name="opis_kamizelka" (input)="kamizelka.opis_kamizelka = $event.target.value"></textarea>
+					<textarea class="form-control" ngModel name="opis_kamizelka"></textarea>
 				</div>
 			</div>
 
@@ -156,30 +160,30 @@
 				<br><h2>Spodnie</h2>
 				<div class="form-group col-xs-12 col-sm-6">
 					<label for="tkanina_spodnie">Tkanina</label>
-					<input class="form-control" type="text" name="tkanina_spodnie" (input)="spodnie.tkanina_spodnie = $event.target.value">
+					<input class="form-control" type="text" ngModel name="tkanina_spodnie">
 				</div>
 				<div class="form-group col-xs-12 col-sm-6">
 					<label for="rozmiar_mierzony_spodnie">Rozmiar mierzony</label>
-					<input class="form-control" type="text" name="rozmiar_mierzony_spodnie" (input)="spodnie.rozmiar_mierzony_spodnie = $event.target.value">
+					<input class="form-control" type="text" ngModel name="rozmiar_mierzony_spodnie">
 				</div>
 				<div class="form-group col-xs-12 col-sm-6">
 					<label for="model_spodnie">Model</label>
-					<input class="form-control" type="text" name="model_spodnie" (input)="spodnie.model_spodnie = $event.target.value">
+					<input class="form-control" type="text" ngModel name="model_spodnie">
 				</div>
 				<div class="form-group col-xs-12 col-sm-6">
 					<label>Kieszenie</label>
 						<div class="radio">
 							<label>
-								<input type="radio" name="kieszenie_spodnie" value="angielskie" (click)="spodnie.kieszenie_spodnie = $event.target.value">Angielskie
+								<input type="radio" ngModel name="kieszenie_spodnie" value="angielskie">Angielskie
 							</label>
 							<label>
-								<input type="radio" name="kieszenie_spodnie" value="dwuwypustkowe" (click)="spodnie.kieszenie_spodnie = $event.target.value">Dwuwypustkowe
+								<input type="radio" ngModel name="kieszenie_spodnie" value="dwuwypustkowe">Dwuwypustkowe
 							</label>
 						</div>
 				</div>
 				<div class="form-group col-xs-12 col-sm-6">
 					<label for="nogawki">Doły nogawek</label>
-					<select name="nogawki" class="form-control" (input)="spodnie.nogawki = $event.target.value">
+					<select ngModel name="nogawki" class="form-control">
 						<option disabled>Wybierz...</option>
 						<option value="mankiet">Mankiet</option>
 						<option value="bez_mankietu">Bez mankietu</option>
@@ -188,15 +192,15 @@
 				</div>
 				<div class="form-group col-xs-6 col-sm-3">
 					<label for="dlugosc_nogawek">Długośc nogawek (z paskiem)</label>
-					<input class="form-control" type="text" name="dlugosc_nogawek" (input)="spodnie.dlugosc_nogawek = $event.target.value">
+					<input class="form-control" type="text" ngModel name="dlugosc_nogawek">
 				</div>
 				<div class="form-group col-xs-6 col-sm-3">
 					<label for="obwod_pasa">Obwód pasa (na gotowo)</label>
-					<input class="form-control" type="text" name="obwod_pasa" (input)="spodnie.obwod_pasa = $event.target.value">
+					<input class="form-control" type="text" ngModel name="obwod_pasa">
 				</div>
 				<div class="form-group col-xs-12">
 					<label for="opis_spodnie">Dodatkowe informacje</label>
-					<textarea class="form-control" name="opis_spodnie" (input)="spodnie.opis_spodnie = $event.target.value"></textarea>
+					<textarea class="form-control" ngModel name="opis_spodnie"></textarea>
 				</div>
 			</div>
 

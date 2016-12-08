@@ -11,17 +11,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>12.12.2016</td>
-						<td>Garnitur</td>
-						<td>NG 152</td>
-						<td>48/176</td>
-					</tr>
-					<tr>
-						<td>12.12.2016</td>
-						<td>Garnitur</td>
-						<td>NG 152</td>
-						<td>48/176</td>
+					<tr *ngFor="let order of orders">
+						<td>{{order.data_zamowienia}}</td>
+						<td>{{order.typ_zamowienia}}</td>
+						<td>{{order.tkanina_spodnie}}</td>
+						<td>{{order.rozmiar_mierzony_spodnie}}</td>
 					</tr>
 				</tbody>
 			</table>
